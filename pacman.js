@@ -1,6 +1,6 @@
 // Setup initial game stats
-var score = 0;
-var lives = 2;
+let score = 0;
+let lives = 2;
 
 
 // Define your ghosts here
@@ -11,7 +11,7 @@ var lives = 2;
 // Draw the screen functionality
 function drawScreen() {
   clearScreen();
-  setTimeout(function() {
+  setTimeout(() => {
     displayStats();
     displayMenu();
     displayPrompt();
@@ -23,7 +23,7 @@ function clearScreen() {
 }
 
 function displayStats() {
-  console.log('Score: ' + score + '     Lives: ' + lives);
+  console.log(`Score: ${score}     Lives: ${lives}`);
 }
 
 function displayMenu() {
@@ -66,7 +66,7 @@ function processInput(key) {
 //
 
 // Setup Input and Output to work nicely in our Terminal
-var stdin = process.stdin;
+const stdin = process.stdin;
 stdin.setRawMode(true);
 stdin.resume();
 stdin.setEncoding('utf8');
@@ -75,13 +75,13 @@ stdin.setEncoding('utf8');
 drawScreen();
 
 // Process input and draw screen each time player enters a key
-stdin.on('data', function(key) {
+stdin.on('data', (key) => {
   process.stdout.write(key);
   processInput(key);
   setTimeout(drawScreen, 300); // The command prompt will flash a message for 300 milliseoncds before it re-draws the screen. You can adjust the 300 number to increase this.
 });
 
 // Player Quits
-process.on('exit', function() {
+process.on('exit', () => {
   console.log('\n\nGame Over!\n');
 });
